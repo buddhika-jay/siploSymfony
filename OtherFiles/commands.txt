@@ -52,3 +52,23 @@ php app/console cache:clear
         prefix: /admin
 
 
+
+#sonata EasyExtends
+php composer.phar require sonata-project/easy-extends-bundle
+<?php
+
+// app/AppKernel.php
+
+public function registerBundles()
+{
+    return array(
+        // ...
+        new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+        // ...
+    );
+}
+
+#sonata user bundle
+php composer.phar require sonata-project/user-bundle --no-update
+php composer.phar require sonata-project/doctrine-orm-admin-bundle  --no-update # optional
+php composer.phar update

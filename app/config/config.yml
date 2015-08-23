@@ -70,6 +70,12 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataUserBundle: ~
+                    SonataUserBundle: ~
+                    FOSUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -80,6 +86,11 @@ swiftmailer:
     spool:     { type: memory }
 
 #sonata
+
+#sonata user
+sonata_user:
+    security_acl: true
+    manager_type: orm
 # app/config/config.yml
 sonata_block:
    default_contexts: [cms]
@@ -87,4 +98,19 @@ sonata_block:
        # Enable the SonataAdminBundle block
        sonata.admin.block.admin_list:
            contexts:   [admin]
+       sonata.user.block.menu:    # used to display the menu in profile pages
+       sonata.user.block.account: # used to display menu option (login option)
+       sonata.block.service.text: # used to if you plan to use Sonata use
        # Your other blocks
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Sonata\UserBundle\Entity\BaseUser
+
+
+    group:
+        group_class:   Sonata\UserBundle\Entity\BaseGroup
+        group_manager: sonata.user.orm.group_manager                    # If you're using doctrine orm (use sonata.user.mongodb.user_manager for mongodb)
+
+    service:
+        user_manager: sonata.user.orm.user_manager
