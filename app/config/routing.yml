@@ -1,3 +1,8 @@
+siplo_admin:
+    resource: "@SiploAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
